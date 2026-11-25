@@ -36,5 +36,14 @@ df2 = spark.createDataFrame(data = data2, schema = schema_ddl)
 df2.printSchema()
 ```
 
+## Day 5 : Reading and Creating Dataframe from different file
+**Reading CSV**
+Using property-sales.csv, which looks like this:
+Address,Type,City,SalePrice ($),Agent
+1 Rowley Street ,Detached House,New York,745000,Penelope Pullman
+13a lollipop avenue,Apartment,Los Angeles,345000,Jack Smith
+34 the drive,House,Atlanta,459000,Sheila Sammi
 
+```
 
+```
