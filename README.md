@@ -48,7 +48,7 @@ Address,Type,City,SalePrice ($),Agent
 path = "Files/property-sales.csv"
 df_csv = spark.read.csv(path, headers = True, inferschema = True)
 #inferschema = True is asking spark to do the schema matching during read, it's lazy and costly.
-df_csv.display()
+display(df_csv)
 df_csv.dtypes # to check the df datatypes
 ```
 
