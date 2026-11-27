@@ -94,7 +94,7 @@ df_json.withColumnRenamed("SalePrice ($)", "SalePrice_USD")\
 ```
 
 
-## Writing DF to table in different 'modes'
+**Writing DF to table in different 'modes'**
 Using saveAsTable() we can save the DataFrame as **Managed Table**. That means spark manages the data as well as the metadata. Using SQL *Drop Table table_name* it can remove the data and metadata both, as spark is managing everything. 
 Saving as Unmanaged Table the delete command will remove only the meta-data, not the actual data. 
 
@@ -119,6 +119,18 @@ df_json.write.mode("ignore").format("delta").saveAsTable(delta_table_name)
 df_jspon.write.mode("error").format("delta").saveAsTable(detal_table_name)
 ```
 
+**Writing to an Unmanaged Delta Table (Perhaps to export to external file [DataBricks/Snowflake])**
+```python
+df_json.write.mode("overwrite").format("delta").save("File/delta/Unmanaged.delta")
+```
+
+**Read from Table to DataFrame**
+```python
+df = spark.read("SELECT * FROM lakehouse_name.PropertySales LIMIT 1000")
+display(df)
+```
+
+---
 
 
 
