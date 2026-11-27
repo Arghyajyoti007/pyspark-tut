@@ -195,4 +195,48 @@ df_new.show()
 
 ---
 
+## Day 8 : DataFrame Filtering
+filer() or where() function are used to filter the DataFrame results. 
+
+```python
+# Read Data
+df = spark.read.csv("Files/properties_sales.csv", header = True)
+
+# select data for NY City
+df.filter(df["City"] == "New York").show()
+
+# select data for non NY City
+df.filter(df["City"] != "New York").show()
+df.filter(~(df["City"] == "New York")).show()
+
+# startsWith, endsWith
+# startsWith
+df.filter(df.City.startsWith("N")).show()
+# endsWith
+df.filter(df.City.endsWith("al").show()
+
+# Multiple Condition
+df.filter((df["City"] != "New York") & (df["SalesPrice_USD"]>400000)).show()
+df.filter((df["City"] == "New York") | (df["SalesPrice_USD"]>400000)).show()
+
+# Filter df if df.City is in the list cities_we_care_about
+cities_we_care_about = ["New York","Amsterdam"]
+df.filter(df.City.isin(cities_we_care_about)).show()
+
+# filter df if the Type contains 'House' 
+df.filter(df.Type.contains("House")).show()
+
+# filter where 'House' appears somewhere in df.Type
+df.filter(df.Type.like(%House%))
+
+# filter where 'House' in start of df.Type
+df.filter(df.Type.like(House%))
+
+# filter where 'avenue' in end of df.Type
+df.filter(df.Type.like(%avenue))
+
+# Other ways to use SQL expressions
+df.filter("City != 'Los Angeles'").show()
+df.filter("City <> 'Los Angeles'").show()
+```
 
