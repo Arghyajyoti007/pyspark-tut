@@ -132,6 +132,67 @@ display(df)
 
 ---
 
+## Day 7 : Basic Operations in Dataframe
 
+```python
+# Reading data from DataFrame
+df = spark.read.csv("Files/property_sales.csv", header = True, inferschema = True)
+```
+**Display Operations**
+```python
+# Shows a printed representation of the DF
+df.show()
+
+# Shows a interactive view of the DF
+display(df)
+
+# Shows interactive view of first 2 rows
+display(df.head(2))
+```
+
+**Exploring DataFrames**
+```python
+df.printSchema()
+
+# Gives the datatype of the columns
+df.dtypes
+
+# Gives the actual schema
+df.schema
+
+# We can store the schema and use it for other tables
+source_schema = df.schema
+new_df_with_exsisting_schema = spark.read.csv( schema = source_schema)
+```
+**Column Operation**
+```python
+# shows all the column
+df.column
+
+# Shows a single column
+df.select('Type').show()
+type(df.select('Type'))
+
+# renaming existing column
+df.withColumnRenamed("Address ", "Address")
+df.select('Address').show()
+
+# Selecting multiple column
+df.select(["Address","City"]).show()
+
+# Adding Column
+df = df.withColumn("2x_Sales", df["SalesPrice ($)]*2)
+df.show()
+
+# Removing Column
+df.drop("2x_Sales")
+df.show()
+
+# Renaming multiple column
+df_new = df.selectExpr("Address as ADD", "SalesPrice ($) as SalesPrice_USD")
+df_new.show()
+```
+
+---
 
 
