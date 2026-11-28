@@ -240,3 +240,5 @@ df.filter("City != 'Los Angeles'").show()
 df.filter("City <> 'Los Angeles'").show()
 ```
 
+# Day 9 : Group By 
+
