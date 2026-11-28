@@ -241,4 +241,17 @@ df.filter("City <> 'Los Angeles'").show()
 ```
 
 # Day 9 : Group By 
+```python
+df = spark.read.csv("Files/properties_sales.csv", header = True)
+df.show()
 
+# Simple Aggregrates
+df.groupBy("City").count().show()
+
+# Finding out Max
+df.groupBy("Agent").max("SalesPrice_USD").show()
+
+# Renaming Column
+df.groupBy("Agent").max('SalesPrice_USD').withColumnRename(max("SalesPrice_USD"),'Max_Sales_Price').show()
+
+```
